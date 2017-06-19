@@ -13,6 +13,9 @@
 		522C89F11EF7F750008F3F3C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 522C89EF1EF7F750008F3F3C /* LaunchScreen.storyboard */; };
 		522C89FD1EF7FDF9008F3F3C /* VTLocationsMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522C89FC1EF7FDF9008F3F3C /* VTLocationsMapViewController.swift */; };
 		522C8A001EF7FF18008F3F3C /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 522C89FF1EF7FF18008F3F3C /* MapKit.framework */; };
+		522C8A021EF80413008F3F3C /* FlickrClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522C8A011EF80413008F3F3C /* FlickrClient.swift */; };
+		522C8A041EF804D4008F3F3C /* FlickrConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522C8A031EF804D4008F3F3C /* FlickrConstants.swift */; };
+		522C8A071EF807B2008F3F3C /* VTAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522C8A061EF807B2008F3F3C /* VTAPIManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +27,9 @@
 		522C89F21EF7F750008F3F3C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		522C89FC1EF7FDF9008F3F3C /* VTLocationsMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VTLocationsMapViewController.swift; sourceTree = "<group>"; };
 		522C89FF1EF7FF18008F3F3C /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		522C8A011EF80413008F3F3C /* FlickrClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlickrClient.swift; sourceTree = "<group>"; };
+		522C8A031EF804D4008F3F3C /* FlickrConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlickrConstants.swift; sourceTree = "<group>"; };
+		522C8A061EF807B2008F3F3C /* VTAPIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VTAPIManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,7 +87,6 @@
 		522C89F91EF7F780008F3F3C /* View */ = {
 			isa = PBXGroup;
 			children = (
-				522C89FC1EF7FDF9008F3F3C /* VTLocationsMapViewController.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -89,6 +94,7 @@
 		522C89FA1EF7F786008F3F3C /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				522C89FC1EF7FDF9008F3F3C /* VTLocationsMapViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -96,6 +102,8 @@
 		522C89FB1EF7F790008F3F3C /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				522C8A051EF804DA008F3F3C /* Client */,
+				522C8A061EF807B2008F3F3C /* VTAPIManager.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -106,6 +114,15 @@
 				522C89FF1EF7FF18008F3F3C /* MapKit.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		522C8A051EF804DA008F3F3C /* Client */ = {
+			isa = PBXGroup;
+			children = (
+				522C8A011EF80413008F3F3C /* FlickrClient.swift */,
+				522C8A031EF804D4008F3F3C /* FlickrConstants.swift */,
+			);
+			name = Client;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -182,8 +199,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				522C8A041EF804D4008F3F3C /* FlickrConstants.swift in Sources */,
+				522C8A071EF807B2008F3F3C /* VTAPIManager.swift in Sources */,
 				522C89FD1EF7FDF9008F3F3C /* VTLocationsMapViewController.swift in Sources */,
 				522C89E71EF7F750008F3F3C /* AppDelegate.swift in Sources */,
+				522C8A021EF80413008F3F3C /* FlickrClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
