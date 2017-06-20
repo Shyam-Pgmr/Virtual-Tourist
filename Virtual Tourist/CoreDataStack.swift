@@ -123,5 +123,9 @@ extension CoreDataStack {
             static let Pin = "Pin"
             static let Photo = "Photo"
         }
-    }    
+        
+        struct Attribute {
+            static let CreatedAt = "createdAt"
+        }
+    }
 }

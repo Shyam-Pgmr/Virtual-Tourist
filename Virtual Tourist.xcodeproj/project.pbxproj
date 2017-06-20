@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5206D5C21EF9510400207174 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5206D5C11EF9510400207174 /* Utility.swift */; };
+		5206D5C71EF994F300207174 /* VTPhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5206D5C61EF994F300207174 /* VTPhotoCollectionViewCell.swift */; };
 		522C89E71EF7F750008F3F3C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522C89E61EF7F750008F3F3C /* AppDelegate.swift */; };
 		522C89EC1EF7F750008F3F3C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 522C89EA1EF7F750008F3F3C /* Main.storyboard */; };
 		522C89EE1EF7F750008F3F3C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 522C89ED1EF7F750008F3F3C /* Assets.xcassets */; };
@@ -28,6 +29,7 @@
 
 /* Begin PBXFileReference section */
 		5206D5C11EF9510400207174 /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
+		5206D5C61EF994F300207174 /* VTPhotoCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VTPhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 		522C89E31EF7F750008F3F3C /* Virtual Tourist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Virtual Tourist.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		522C89E61EF7F750008F3F3C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		522C89EB1EF7F750008F3F3C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -61,6 +63,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5206D5C51EF994C200207174 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				5206D5C61EF994F300207174 /* VTPhotoCollectionViewCell.swift */,
+			);
+			name = Cell;
+			sourceTree = "<group>";
+		};
 		522C89DA1EF7F750008F3F3C = {
 			isa = PBXGroup;
 			children = (
@@ -111,6 +121,7 @@
 		522C89FA1EF7F786008F3F3C /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				5206D5C51EF994C200207174 /* Cell */,
 				522C89FC1EF7FDF9008F3F3C /* VTLocationsMapViewController.swift */,
 				522C8A1E1EF92616008F3F3C /* VTPhotoAlbumViewController.swift */,
 			);
@@ -249,6 +260,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				522C8A131EF8FBE2008F3F3C /* UserDefault.swift in Sources */,
+				5206D5C71EF994F300207174 /* VTPhotoCollectionViewCell.swift in Sources */,
 				522C8A041EF804D4008F3F3C /* FlickrConstants.swift in Sources */,
 				522C8A071EF807B2008F3F3C /* VTAPIManager.swift in Sources */,
 				522C8A211EF92877008F3F3C /* VTConstants.swift in Sources */,

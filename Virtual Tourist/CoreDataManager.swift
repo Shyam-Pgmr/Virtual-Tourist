@@ -39,6 +39,7 @@ class CoreDataManager: NSObject {
             
             photo.pin = pin
             photo.imageURL = photoDictionary[FlickrClient.ResponseKeys.MediumURL] as? String ?? ""
+            photo.createdAt = NSDate()
             
             do {
                 try stack.saveContext()
@@ -82,6 +83,16 @@ class CoreDataManager: NSObject {
         }
         
         return photosArray
+    }
+    
+    func getFetchRequestControllerForPhotos(pin:Pin) -> NSFetchedResultsController<NSFetchRequestResult> {
+        
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: CoreDataStack.Constants.Entity.Photo)
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: CoreDataStack.Constants.Attribute.CreatedAt, ascending: false)]
+        fetchRequest.predicate = NSPredicate(format: "pin = %@", pin)
+
+        let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: stack.context, sectionNameKeyPath: CoreDataStack.Constants.Attribute.CreatedAt, cacheName: nil)
+        return fetchedResultsController
     }
     
     // MARK: Helpers

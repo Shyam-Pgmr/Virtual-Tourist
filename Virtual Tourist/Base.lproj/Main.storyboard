@@ -80,15 +80,41 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="VNb-oU-563">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="VTPhotoCollectionViewCell" id="VNb-oU-563" customClass="VTPhotoCollectionViewCell" customModule="Virtual_Tourist" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Vzw-vd-sTu">
+                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                    <color key="backgroundColor" red="0.8666666666666667" green="0.8666666666666667" blue="0.8666666666666667" alpha="1" colorSpace="calibratedRGB"/>
+                                                </imageView>
+                                                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="zLC-yw-765">
+                                                    <rect key="frame" x="15" y="15" width="20" height="20"/>
+                                                    <color key="color" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </activityIndicatorView>
+                                            </subviews>
                                         </view>
+                                        <constraints>
+                                            <constraint firstItem="zLC-yw-765" firstAttribute="centerX" secondItem="Vzw-vd-sTu" secondAttribute="centerX" id="0TZ-1n-LJT"/>
+                                            <constraint firstAttribute="bottom" secondItem="Vzw-vd-sTu" secondAttribute="bottom" id="5ca-ln-IjL"/>
+                                            <constraint firstAttribute="trailing" secondItem="Vzw-vd-sTu" secondAttribute="trailing" id="71y-9e-81b"/>
+                                            <constraint firstItem="zLC-yw-765" firstAttribute="centerY" secondItem="Vzw-vd-sTu" secondAttribute="centerY" id="AAH-eg-fIn"/>
+                                            <constraint firstItem="Vzw-vd-sTu" firstAttribute="top" secondItem="VNb-oU-563" secondAttribute="top" id="AWS-mh-POZ"/>
+                                            <constraint firstItem="Vzw-vd-sTu" firstAttribute="leading" secondItem="VNb-oU-563" secondAttribute="leading" id="yqe-8v-1yZ"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="activityIndicator" destination="zLC-yw-765" id="YvU-Wb-Dq7"/>
+                                            <outlet property="imageView" destination="Vzw-vd-sTu" id="K8v-XH-I4w"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="Ale-td-k5b" id="4Mi-j2-EtO"/>
+                                    <outlet property="delegate" destination="Ale-td-k5b" id="Iuz-bK-364"/>
+                                </connections>
                             </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
