@@ -33,6 +33,27 @@ class CoreDataManager: NSObject {
         return nil
     }
     
+    func storePhoto(using photoDictionary:[String:AnyObject], pin:Pin) {
+        
+        if let photo = NSEntityDescription.insertNewObject(forEntityName: CoreDataStack.Constants.Entity.Photo, into: stack.context) as? Photo {
+            
+            photo.pin = pin
+            photo.imageURL = photoDictionary[FlickrClient.ResponseKeys.MediumURL] as? String ?? ""
+            
+            do {
+                try stack.saveContext()
+            } catch {
+                fatalError("Error occured while saving Photo")
+            }
+        }
+    }
+    
+    func storePhotos(using photosArray:[[String:AnyObject]], pin:Pin) {
+        for photoDictionary in photosArray {
+            storePhoto(using: photoDictionary, pin: pin)
+        }
+    }
+    
     func getPins() -> [Pin] {
         
         let fetchRequest = NSFetchRequest<Pin>(entityName: CoreDataStack.Constants.Entity.Pin)
@@ -45,6 +66,22 @@ class CoreDataManager: NSObject {
         }
         
         return pinsArray
+    }
+    
+    func getPhoto(of pin:Pin) -> [Photo] {
+        
+        let fetchRequest = NSFetchRequest<Photo>(entityName: CoreDataStack.Constants.Entity.Photo)
+        fetchRequest.predicate = NSPredicate(format: "pin = %@", pin)
+        
+        var photosArray = [Photo]()
+        
+        do {
+            photosArray = try stack.context.fetch(fetchRequest)
+        } catch {
+            fatalError("Error occured while fetching Photos")
+        }
+        
+        return photosArray
     }
     
     // MARK: Helpers

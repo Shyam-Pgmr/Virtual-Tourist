@@ -130,7 +130,6 @@ extension VTLocationsMapViewController: MKMapViewDelegate {
 
 }
 
-
 // MARK: CustomPointAnnotation
 
 /// Custom MKPointAnnotation to hold Pin Object

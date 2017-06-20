@@ -58,6 +58,13 @@ extension FlickrClient {
         static let Total = "total"
     }
     
+    
+    // MARK: Response Keys
+    struct ResponseValues {
+        static let OKStatus = "ok"
+    }
+    
+    
     // MARK: Error Description
     struct ErrorDescription {
         static let NoInternetConnection = "Check your Internet Connection"

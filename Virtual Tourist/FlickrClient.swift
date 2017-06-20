@@ -19,10 +19,10 @@ class FlickrClient: NSObject {
         
     // MARK: GET
     
-    func taskForGETMethod(_ host:String, method: String, parameters: [String:Any], completionHandlerForGET: @escaping (_ result: AnyObject?, _ error: NSError?) -> Void) -> URLSessionDataTask {
+    func taskForGETMethod(_ host:String, path: String, parameters: [String:Any], completionHandlerForGET: @escaping (_ result: AnyObject?, _ error: NSError?) -> Void) -> URLSessionDataTask {
         
         // Build the URL, Configure the request
-        let request = NSMutableURLRequest(url: URLFromParameters(parameters, host: host, path: method))
+        let request = NSMutableURLRequest(url: URLFromParameters(parameters, host: host, path: path))
         
         // Make the request
         let task = session.dataTask(with: request as URLRequest) { (data, response, error) in

@@ -17,4 +17,29 @@ struct Constant {
         }
     }
     
+    // MARK: Alert
+    struct Alert {
+        
+        struct Title {
+            static let Validation = "Validation"
+            static let ServerError = "Server Error"
+            static let Oops = "Oops"
+            static let Success = "Success"
+            
+        }
+        
+        struct Message {
+            static let InvalidURL = "Invalid URL"
+        }
+        
+        struct ActionTitle {
+            static let OK = "OK"
+        }
+        
+    }
+    
+    // MARK: Segue
+    struct Segue {
+        static let PresentHome = "PresentHome"
+    }
 }

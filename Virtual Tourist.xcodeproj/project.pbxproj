@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5206D5C21EF9510400207174 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5206D5C11EF9510400207174 /* Utility.swift */; };
 		522C89E71EF7F750008F3F3C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522C89E61EF7F750008F3F3C /* AppDelegate.swift */; };
 		522C89EC1EF7F750008F3F3C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 522C89EA1EF7F750008F3F3C /* Main.storyboard */; };
 		522C89EE1EF7F750008F3F3C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 522C89ED1EF7F750008F3F3C /* Assets.xcassets */; };
@@ -26,6 +27,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5206D5C11EF9510400207174 /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		522C89E31EF7F750008F3F3C /* Virtual Tourist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Virtual Tourist.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		522C89E61EF7F750008F3F3C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		522C89EB1EF7F750008F3F3C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -122,6 +124,7 @@
 				522C8A101EF8FB69008F3F3C /* Http */,
 				522C8A081EF8F628008F3F3C /* Core Data */,
 				522C8A201EF92877008F3F3C /* VTConstants.swift */,
+				5206D5C11EF9510400207174 /* Utility.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -145,8 +148,8 @@
 		522C8A081EF8F628008F3F3C /* Core Data */ = {
 			isa = PBXGroup;
 			children = (
-				522C8A091EF8F673008F3F3C /* CoreDataStack.swift */,
 				522C8A0D1EF8F710008F3F3C /* Model.xcdatamodeld */,
+				522C8A091EF8F673008F3F3C /* CoreDataStack.swift */,
 				522C8A1C1EF9150F008F3F3C /* CoreDataManager.swift */,
 			);
 			name = "Core Data";
@@ -253,6 +256,7 @@
 				522C8A0F1EF8F710008F3F3C /* Model.xcdatamodeld in Sources */,
 				522C8A0A1EF8F673008F3F3C /* CoreDataStack.swift in Sources */,
 				522C8A1D1EF9150F008F3F3C /* CoreDataManager.swift in Sources */,
+				5206D5C21EF9510400207174 /* Utility.swift in Sources */,
 				522C89E71EF7F750008F3F3C /* AppDelegate.swift in Sources */,
 				522C8A1F1EF92616008F3F3C /* VTPhotoAlbumViewController.swift in Sources */,
 				522C8A021EF80413008F3F3C /* FlickrClient.swift in Sources */,
@@ -421,6 +425,7 @@
 				522C89F71EF7F750008F3F3C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
