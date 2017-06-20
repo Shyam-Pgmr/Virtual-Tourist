@@ -43,6 +43,14 @@ class Utility: NSObject {
         }
     }
     
+    /// Executes given block of Code in Background Thread
+    ///
+    /// - Parameter block: block that should be exected on Background Thread
+    class func runOnBackground(block: @escaping (Void)->Void) {
+        DispatchQueue.global(qos: .background).async {
+            block()
+        }
+    }
     
     /// Opens given URL in External Browser
     ///

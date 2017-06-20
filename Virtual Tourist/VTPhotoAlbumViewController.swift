@@ -49,7 +49,10 @@ class VTPhotoAlbumViewController: UIViewController {
 
     @IBAction func newCollectionButtonTapAction(_ sender:UIButton) {
         
-        clearCachedPhotoAndfetchNew()
+        hideNoImageView()
+        Utility.runOnBackground {
+            self.clearCachedPhotoAndfetchNew()
+        }
     }
     
     // MARK: Helpers
@@ -64,17 +67,29 @@ class VTPhotoAlbumViewController: UIViewController {
     }
     
     func showNoImageView() {
-        noImageLabel.isHidden = false
+        Utility.runOnMain {
+            self.noImageLabel.isHidden = false
+        }
+    }
+    
+    func hideNoImageView() {
+        Utility.runOnMain {
+           self.noImageLabel.isHidden = true
+        }
     }
     
     func showLoader() {
-        loaderView.isHidden = false
-        newCollectionButton.isEnabled = false
+        Utility.runOnMain {
+            self.loaderView.isHidden = false
+            self.newCollectionButton.isEnabled = false
+        }
     }
     
     func hideLoader() {
-        loaderView.isHidden = true
-        newCollectionButton.isEnabled = true
+        Utility.runOnMain {
+            self.loaderView.isHidden = true
+            self.newCollectionButton.isEnabled = true
+        }
     }
     
     func setupFetchRequestController() {
@@ -117,9 +132,31 @@ class VTPhotoAlbumViewController: UIViewController {
     }
     
     func clearCachedPhotoAndfetchNew() {
-        CoreDataManager.shard().deleteAllPhotos(of: pin)
-        setupFetchRequestController()
-        fetchPhotosFromFlickrIfRequired()
+        
+        // Clear Cached Photos
+        
+        CoreDataManager.shard().stack.performBackgroundBatchOperation { (context) in
+            
+            if let fetchedResultsController = self.fetchedResultsController, let fetchedObjects = fetchedResultsController.fetchedObjects {
+                for object in fetchedObjects {
+                    self.delete(photo: object as! Photo)
+                }
+            }
+
+            self.fetchPhotosFromFlickrIfRequired()
+        }
+    }
+    
+    func delete(photo:Photo) {
+        if let fetchedResultsController = fetchedResultsController {
+            do {
+                fetchedResultsController.managedObjectContext.delete(photo)
+                try fetchedResultsController.managedObjectContext.save()
+            }
+            catch {
+                print("Error occured while deleting Photo")
+            }
+        }
     }
     
     // MARK: API
@@ -142,7 +179,25 @@ class VTPhotoAlbumViewController: UIViewController {
             }
             
             func cachePhotos(photosArray:[[String:AnyObject]]) {
-                CoreDataManager.shard().storePhotos(using: photosArray, pin: self.pin)
+                
+                if let context = self.fetchedResultsController?.managedObjectContext {
+                    
+                    for photoDictionary in photosArray {
+                        if let photo = NSEntityDescription.insertNewObject(forEntityName: CoreDataStack.Constants.Entity.Photo, into: context) as? Photo {
+                            
+                            photo.pin = self.pin
+                            photo.imageURL = photoDictionary[FlickrClient.ResponseKeys.MediumURL] as? String ?? ""
+                            photo.createdAt = NSDate()
+                        }
+                    }
+                    
+                    do {
+                        try context.save()
+                    }
+                    catch {
+                        print("Error occured while saving Photos")
+                    }
+                }
             }
             
             guard let result = result else {
@@ -169,18 +224,13 @@ class VTPhotoAlbumViewController: UIViewController {
             }
             
             if photosArray.count == 0 {
-                Utility.runOnMain {
-                    self.showNoImageView()
-                }
+                self.hideLoader()
+                self.showNoImageView()
                 return
             }
             else {
+                
                 cachePhotos(photosArray: photosArray)
-                Utility.runOnMain {
-                    self.loadPhotos()
-                }
-            }
-            Utility.runOnMain {
                 self.hideLoader()
             }
         }
@@ -218,9 +268,8 @@ extension VTPhotoAlbumViewController:UICollectionViewDataSource, UICollectionVie
         
         // Delete Photo
         let photo = fetchedResultsController?.object(at: indexPath) as! Photo
-        fetchedResultsController?.managedObjectContext.delete(photo)
+        self.delete(photo:photo)
     }
-    
 }
 
 extension VTPhotoAlbumViewController: UICollectionViewDelegateFlowLayout {
@@ -244,9 +293,7 @@ extension VTPhotoAlbumViewController: UICollectionViewDelegateFlowLayout {
 // MARK: NSFetchedResultsController Delegate
 
 extension VTPhotoAlbumViewController:NSFetchedResultsControllerDelegate {
-    
-    
-    
+
     func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         blockOperations.removeAll(keepingCapacity: false)
     }

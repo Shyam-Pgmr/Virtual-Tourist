@@ -20,12 +20,7 @@ class CoreDataManager: NSObject {
             
             pin.latitude = latitude
             pin.longitude = longitude
-            
-            do {
-                try stack.saveContext()
-            } catch {
-                fatalError("Error occured while saving Pin")
-            }
+            stack.save()
             
             return pin
         }
@@ -56,12 +51,7 @@ class CoreDataManager: NSObject {
             photo.pin = pin
             photo.imageURL = photoDictionary[FlickrClient.ResponseKeys.MediumURL] as? String ?? ""
             photo.createdAt = NSDate()
-            
-            do {
-                try stack.saveContext()
-            } catch {
-                fatalError("Error occured while saving Photo")
-            }
+            stack.save()
         }
     }
     
