@@ -21,6 +21,8 @@
 		522C8A0F1EF8F710008F3F3C /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 522C8A0D1EF8F710008F3F3C /* Model.xcdatamodeld */; };
 		522C8A131EF8FBE2008F3F3C /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522C8A121EF8FBE2008F3F3C /* UserDefault.swift */; };
 		522C8A1D1EF9150F008F3F3C /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522C8A1C1EF9150F008F3F3C /* CoreDataManager.swift */; };
+		522C8A1F1EF92616008F3F3C /* VTPhotoAlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522C8A1E1EF92616008F3F3C /* VTPhotoAlbumViewController.swift */; };
+		522C8A211EF92877008F3F3C /* VTConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522C8A201EF92877008F3F3C /* VTConstants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +42,8 @@
 		522C8A0E1EF8F710008F3F3C /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		522C8A121EF8FBE2008F3F3C /* UserDefault.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefault.swift; sourceTree = "<group>"; };
 		522C8A1C1EF9150F008F3F3C /* CoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		522C8A1E1EF92616008F3F3C /* VTPhotoAlbumViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VTPhotoAlbumViewController.swift; sourceTree = "<group>"; };
+		522C8A201EF92877008F3F3C /* VTConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VTConstants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +110,7 @@
 			isa = PBXGroup;
 			children = (
 				522C89FC1EF7FDF9008F3F3C /* VTLocationsMapViewController.swift */,
+				522C8A1E1EF92616008F3F3C /* VTPhotoAlbumViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -116,6 +121,7 @@
 				522C8A111EF8FB7B008F3F3C /* User Defaults */,
 				522C8A101EF8FB69008F3F3C /* Http */,
 				522C8A081EF8F628008F3F3C /* Core Data */,
+				522C8A201EF92877008F3F3C /* VTConstants.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -242,11 +248,13 @@
 				522C8A131EF8FBE2008F3F3C /* UserDefault.swift in Sources */,
 				522C8A041EF804D4008F3F3C /* FlickrConstants.swift in Sources */,
 				522C8A071EF807B2008F3F3C /* VTAPIManager.swift in Sources */,
+				522C8A211EF92877008F3F3C /* VTConstants.swift in Sources */,
 				522C89FD1EF7FDF9008F3F3C /* VTLocationsMapViewController.swift in Sources */,
 				522C8A0F1EF8F710008F3F3C /* Model.xcdatamodeld in Sources */,
 				522C8A0A1EF8F673008F3F3C /* CoreDataStack.swift in Sources */,
 				522C8A1D1EF9150F008F3F3C /* CoreDataManager.swift in Sources */,
 				522C89E71EF7F750008F3F3C /* AppDelegate.swift in Sources */,
+				522C8A1F1EF92616008F3F3C /* VTPhotoAlbumViewController.swift in Sources */,
 				522C8A021EF80413008F3F3C /* FlickrClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
