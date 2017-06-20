@@ -71,7 +71,7 @@
                                 </constraints>
                             </mapView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="IC5-Nb-tjp">
-                                <rect key="frame" x="0.0" y="220" width="375" height="447"/>
+                                <rect key="frame" x="0.0" y="220" width="375" height="402"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="uLw-7i-bwM">
                                     <size key="itemSize" width="50" height="50"/>
@@ -116,26 +116,78 @@
                                     <outlet property="delegate" destination="Ale-td-k5b" id="Iuz-bK-364"/>
                                 </connections>
                             </collectionView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LwO-K5-Bka" userLabel="Loader">
+                                <rect key="frame" x="0.0" y="220" width="375" height="402"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="n5B-Pp-G6o">
+                                        <rect key="frame" x="142.5" y="191" width="91" height="20.5"/>
+                                        <subviews>
+                                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="GWF-Dl-qnt">
+                                                <rect key="frame" x="0.0" y="0.5" width="20" height="20"/>
+                                            </activityIndicatorView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nmy-wn-gNB">
+                                                <rect key="frame" x="30" y="0.0" width="61" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="n5B-Pp-G6o" firstAttribute="centerX" secondItem="LwO-K5-Bka" secondAttribute="centerX" id="GaH-Nk-Inm"/>
+                                    <constraint firstItem="n5B-Pp-G6o" firstAttribute="centerY" secondItem="LwO-K5-Bka" secondAttribute="centerY" id="ao2-bE-ATN"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Image" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i9X-pK-W86">
+                                <rect key="frame" x="151" y="411" width="73.5" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8A7-1e-LwC">
+                                <rect key="frame" x="0.0" y="622" width="375" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="A46-JL-i4k"/>
+                                </constraints>
+                                <state key="normal" title="New Collection"/>
+                                <connections>
+                                    <action selector="newCollectionButtonTapAction:" destination="Ale-td-k5b" eventType="touchUpInside" id="iv6-Sa-aUV"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="IC5-Nb-tjp" secondAttribute="trailing" id="1xK-I5-Mqe"/>
-                            <constraint firstItem="cUJ-ch-Z3o" firstAttribute="top" secondItem="IC5-Nb-tjp" secondAttribute="bottom" id="3vf-wi-wSF"/>
+                            <constraint firstItem="i9X-pK-W86" firstAttribute="centerX" secondItem="IC5-Nb-tjp" secondAttribute="centerX" id="3ei-Og-G4B"/>
                             <constraint firstItem="IC5-Nb-tjp" firstAttribute="leading" secondItem="r7V-St-3pS" secondAttribute="leading" id="58K-CK-tOz"/>
+                            <constraint firstItem="8A7-1e-LwC" firstAttribute="top" secondItem="IC5-Nb-tjp" secondAttribute="bottom" id="Ah1-Dr-Quh"/>
+                            <constraint firstAttribute="bottom" secondItem="8A7-1e-LwC" secondAttribute="bottom" id="XSU-xg-E8N"/>
                             <constraint firstItem="8hw-Jg-l4L" firstAttribute="top" secondItem="r7V-St-3pS" secondAttribute="top" id="Z1W-gn-31z"/>
+                            <constraint firstItem="LwO-K5-Bka" firstAttribute="top" secondItem="IC5-Nb-tjp" secondAttribute="top" id="Zob-Sn-4eM"/>
+                            <constraint firstItem="8A7-1e-LwC" firstAttribute="leading" secondItem="r7V-St-3pS" secondAttribute="leading" id="aOg-EX-Yyx"/>
+                            <constraint firstItem="i9X-pK-W86" firstAttribute="centerY" secondItem="IC5-Nb-tjp" secondAttribute="centerY" id="e4z-S3-uFo"/>
                             <constraint firstItem="IC5-Nb-tjp" firstAttribute="top" secondItem="8hw-Jg-l4L" secondAttribute="bottom" id="gGJ-b6-z8m"/>
+                            <constraint firstItem="LwO-K5-Bka" firstAttribute="leading" secondItem="IC5-Nb-tjp" secondAttribute="leading" id="hkt-CY-kPL"/>
+                            <constraint firstItem="LwO-K5-Bka" firstAttribute="bottom" secondItem="IC5-Nb-tjp" secondAttribute="bottom" id="itm-1l-8oP"/>
+                            <constraint firstAttribute="trailing" secondItem="8A7-1e-LwC" secondAttribute="trailing" id="mqN-cM-SQS"/>
                             <constraint firstAttribute="trailing" secondItem="8hw-Jg-l4L" secondAttribute="trailing" id="soL-YK-m3G"/>
+                            <constraint firstItem="LwO-K5-Bka" firstAttribute="trailing" secondItem="IC5-Nb-tjp" secondAttribute="trailing" id="udK-a8-I0Y"/>
                             <constraint firstItem="8hw-Jg-l4L" firstAttribute="leading" secondItem="r7V-St-3pS" secondAttribute="leading" id="xvQ-uZ-jSD"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="IC5-Nb-tjp" id="QAZ-yd-oX4"/>
+                        <outlet property="loaderView" destination="LwO-K5-Bka" id="vY0-CP-ia2"/>
                         <outlet property="mapView" destination="8hw-Jg-l4L" id="xxn-cK-i3v"/>
+                        <outlet property="newCollectionButton" destination="8A7-1e-LwC" id="63u-ee-ejc"/>
+                        <outlet property="noImageLabel" destination="i9X-pK-W86" id="kUa-B2-mkD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RhF-wN-LJK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1999" y="46"/>
+            <point key="canvasLocation" x="1997.5999999999999" y="45.42728635682159"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="x8r-Qz-yJT">

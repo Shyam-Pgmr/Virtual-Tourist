@@ -16,6 +16,9 @@ class VTPhotoAlbumViewController: UIViewController {
     
     @IBOutlet weak var mapView:MKMapView!
     @IBOutlet weak var collectionView:UICollectionView!
+    @IBOutlet weak var loaderView:UIView!
+    @IBOutlet weak var noImageLabel:UILabel!
+    @IBOutlet weak var newCollectionButton:UIButton!
     
     // MARK: Properties
     
@@ -40,6 +43,13 @@ class VTPhotoAlbumViewController: UIViewController {
     
     deinit {
         cancelAllBlockOperations()
+    }
+
+    // MARK: Action
+
+    @IBAction func newCollectionButtonTapAction(_ sender:UIButton) {
+        
+        
     }
     
     // MARK: Helpers
