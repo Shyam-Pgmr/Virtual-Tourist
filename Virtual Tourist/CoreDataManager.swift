@@ -33,6 +33,22 @@ class CoreDataManager: NSObject {
         return nil
     }
     
+    func getPins() -> [Pin] {
+        
+        let fetchRequest = NSFetchRequest<Pin>(entityName: CoreDataStack.Constants.Entity.Pin)
+        var pinsArray = [Pin]()
+        
+        do {
+            pinsArray = try stack.context.fetch(fetchRequest)
+        } catch {
+            fatalError("Error occured while fetching Pins")
+        }
+        
+        return pinsArray
+    }
+    
+    // MARK: Photo
+    
     func storePhoto(using photoDictionary:[String:AnyObject], pin:Pin) {
         
         if let photo = NSEntityDescription.insertNewObject(forEntityName: CoreDataStack.Constants.Entity.Photo, into: stack.context) as? Photo {
@@ -54,21 +70,7 @@ class CoreDataManager: NSObject {
             storePhoto(using: photoDictionary, pin: pin)
         }
     }
-    
-    func getPins() -> [Pin] {
-        
-        let fetchRequest = NSFetchRequest<Pin>(entityName: CoreDataStack.Constants.Entity.Pin)
-        var pinsArray = [Pin]()
-        
-        do {
-           pinsArray = try stack.context.fetch(fetchRequest)
-        } catch {
-            fatalError("Error occured while fetching Pins")
-        }
-        
-        return pinsArray
-    }
-    
+
     func getPhoto(of pin:Pin) -> [Photo] {
         
         let fetchRequest = NSFetchRequest<Photo>(entityName: CoreDataStack.Constants.Entity.Photo)
@@ -93,6 +95,13 @@ class CoreDataManager: NSObject {
 
         let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: stack.context, sectionNameKeyPath: CoreDataStack.Constants.Attribute.CreatedAt, cacheName: nil)
         return fetchedResultsController
+    }
+    
+    func deleteAllPhotos(of pin:Pin) {
+        
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: CoreDataStack.Constants.Entity.Photo)
+        fetchRequest.predicate = NSPredicate(format: "pin = %@", pin)
+        stack.deleteAllData(fetchRequest: fetchRequest)
     }
     
     // MARK: Helpers

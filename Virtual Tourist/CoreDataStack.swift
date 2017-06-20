@@ -82,6 +82,18 @@ internal extension CoreDataStack  {
         try coordinator.destroyPersistentStore(at: dbURL, ofType:NSSQLiteStoreType , options: nil)
         try addStoreCoordinator(NSSQLiteStoreType, configuration: nil, storeURL: dbURL, options: nil)
     }
+    
+    func deleteAllData(fetchRequest:NSFetchRequest<NSFetchRequestResult>) {
+        
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+        do {
+            try coordinator.execute(deleteRequest, with: context)
+            try context.save()
+        }
+        catch {
+            print("unable to delete data for \(fetchRequest)")
+        }
+    }
 }
 
 // MARK: - CoreDataStack (Save Data)

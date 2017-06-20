@@ -49,14 +49,12 @@ class VTPhotoAlbumViewController: UIViewController {
 
     @IBAction func newCollectionButtonTapAction(_ sender:UIButton) {
         
-        
+        clearCachedPhotoAndfetchNew()
     }
     
     // MARK: Helpers
     
     func setupView() {
-        
-        navigationController?.navigationBar.backItem?.title = "Back"
         
         addPinIntoMapView()
         focusPin()
@@ -116,6 +114,12 @@ class VTPhotoAlbumViewController: UIViewController {
             operation.cancel()
         }
         blockOperations.removeAll(keepingCapacity: false)
+    }
+    
+    func clearCachedPhotoAndfetchNew() {
+        CoreDataManager.shard().deleteAllPhotos(of: pin)
+        setupFetchRequestController()
+        fetchPhotosFromFlickrIfRequired()
     }
     
     // MARK: API
