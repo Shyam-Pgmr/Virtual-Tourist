@@ -113,3 +113,15 @@ extension CoreDataStack {
         }
     }
 }
+
+extension CoreDataStack {
+    
+    struct Constants {
+        static let ModelName = "Model"
+        
+        struct Entity {
+            static let Pin = "Pin"
+            static let Photo = "Photo"
+        }
+    }    
+}
