@@ -65,6 +65,20 @@ class VTPhotoAlbumViewController: UIViewController {
         fetchPhotosFromFlickrIfRequired()
     }
     
+    func showNoImageView() {
+        noImageLabel.isHidden = false
+    }
+    
+    func showLoader() {
+        loaderView.isHidden = false
+        newCollectionButton.isEnabled = false
+    }
+    
+    func hideLoader() {
+        loaderView.isHidden = true
+        newCollectionButton.isEnabled = true
+    }
+    
     func setupFetchRequestController() {
         
         fetchedResultsController = CoreDataManager.shard().getFetchRequestControllerForPhotos(pin: pin)
@@ -115,7 +129,7 @@ class VTPhotoAlbumViewController: UIViewController {
     }
     
     func fetchPhotoFromFlickr() {
-        
+        showLoader()
         let _ = VTAPIManager.shared().getImages(forLatitude: pin.latitude, longitude: pin.longitude) { (result, errorMessage) in
             
             func displayError(_ message:String) {
@@ -151,15 +165,19 @@ class VTPhotoAlbumViewController: UIViewController {
             }
             
             if photosArray.count == 0 {
-                displayError("No Photos Found")
+                Utility.runOnMain {
+                    self.showNoImageView()
+                }
                 return
             }
             else {
                 cachePhotos(photosArray: photosArray)
-                
                 Utility.runOnMain {
                     self.loadPhotos()
                 }
+            }
+            Utility.runOnMain {
+                self.hideLoader()
             }
         }
     }
@@ -190,6 +208,13 @@ extension VTPhotoAlbumViewController:UICollectionViewDataSource, UICollectionVie
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoCellIdentifier, for: indexPath) as! VTPhotoCollectionViewCell
         cell.setupCell(photo: photo)
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        // Delete Photo
+        let photo = fetchedResultsController?.object(at: indexPath) as! Photo
+        fetchedResultsController?.managedObjectContext.delete(photo)
     }
     
 }

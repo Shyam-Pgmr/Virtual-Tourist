@@ -10,7 +10,7 @@ import CoreData
 
 class CoreDataManager: NSObject {
 
-    private let stack = CoreDataStack(modelName: CoreDataStack.Constants.ModelName)!
+    let stack = CoreDataStack(modelName: CoreDataStack.Constants.ModelName)!
     
     // MARK: Pin
     
