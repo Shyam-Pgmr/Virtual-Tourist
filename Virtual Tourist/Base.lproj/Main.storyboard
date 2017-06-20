@@ -23,8 +23,10 @@
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="n7f-Vd-9QF">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <gestureRecognizers/>
                                 <connections>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="MfH-GW-h5A"/>
+                                    <outletCollection property="gestureRecognizers" destination="ba0-5m-YUA" appends="YES" id="fCv-em-8ya"/>
                                 </connections>
                             </mapView>
                         </subviews>
@@ -41,6 +43,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="ba0-5m-YUA">
+                    <connections>
+                        <action selector="longPressGestureOnMapView:" destination="BYZ-38-t0r" id="9Zf-ew-TWl"/>
+                    </connections>
+                </pongPressGestureRecognizer>
             </objects>
         </scene>
     </scenes>
