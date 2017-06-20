@@ -14,7 +14,7 @@ class CoreDataManager: NSObject {
     
     // MARK: Pin
     
-    func storePin(latitude:Double, longitude:Double) {
+    func storePin(latitude:Double, longitude:Double) -> Pin? {
         
         if let pin = NSEntityDescription.insertNewObject(forEntityName: CoreDataStack.Constants.Entity.Pin, into: stack.context) as? Pin {
             
@@ -26,7 +26,11 @@ class CoreDataManager: NSObject {
             } catch {
                 fatalError("Error occured while saving Pin")
             }
+            
+            return pin
         }
+        
+        return nil
     }
     
     func getPins() -> [Pin] {

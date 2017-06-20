@@ -31,8 +31,9 @@ class VTLocationsMapViewController: UIViewController {
             let touchPoint = sender.location(in: mapView)
             let newCoordinates = mapView.convert(touchPoint, toCoordinateFrom: mapView)
             
-            storePin(using: newCoordinates)
-            fetchStoredPinsAndAddIntoMap()
+            if let pin = storePin(using: newCoordinates) {
+                addAnnotation(using: pin)
+            }
         }
     }
     
@@ -80,9 +81,10 @@ class VTLocationsMapViewController: UIViewController {
         mapView.addAnnotation(annotation)
     }
     
-    func storePin(using coordinates:CLLocationCoordinate2D) {
+    func storePin(using coordinates:CLLocationCoordinate2D) -> Pin? {
         
-        CoreDataManager.shard().storePin(latitude: coordinates.latitude, longitude: coordinates.longitude)
+        let pin = CoreDataManager.shard().storePin(latitude: coordinates.latitude, longitude: coordinates.longitude)
+        return pin
     }
     
     func showPhotoAlbum(using pin:Pin?) {
@@ -107,6 +109,8 @@ extension VTLocationsMapViewController: MKMapViewDelegate {
         
         if let pointAnnotation = view.annotation as? CustomPointAnnotation {
             showPhotoAlbum(using: pointAnnotation.pin)
+            // Deselect Annotation, only then again it can be selected
+            mapView.deselectAnnotation(view.annotation, animated: false)
         }
     }
 
@@ -120,13 +124,16 @@ extension VTLocationsMapViewController: MKMapViewDelegate {
         pinAnnotation.pinTintColor = .red;
         pinAnnotation.animatesDrop = true;
         pinAnnotation.canShowCallout = false;
-        pinAnnotation.setSelected(true, animated: true)
         
         return pinAnnotation
     }
 
 }
 
+
+// MARK: CustomPointAnnotation
+
+/// Custom MKPointAnnotation to hold Pin Object
 class CustomPointAnnotation:MKPointAnnotation {
     
     var pin:Pin?
