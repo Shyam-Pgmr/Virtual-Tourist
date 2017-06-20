@@ -29,6 +29,20 @@ class CoreDataManager: NSObject {
         }
     }
     
+    func getPins() -> [Pin] {
+        
+        let fetchRequest = NSFetchRequest<Pin>(entityName: CoreDataStack.Constants.Entity.Pin)
+        var pinsArray = [Pin]()
+        
+        do {
+           pinsArray = try stack.context.fetch(fetchRequest)
+        } catch {
+            fatalError("Error occured while fetching Pins")
+        }
+        
+        return pinsArray
+    }
+    
     // MARK: Helpers
     
     // Shared Instance

@@ -20,9 +20,10 @@ class VTLocationsMapViewController: UIViewController {
         super.viewDidLoad()
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         showMapViewLastRegion()
+        fetchStoredPinsAndAddIntoMap()
     }
     
     // MARK: Action
@@ -35,6 +36,7 @@ class VTLocationsMapViewController: UIViewController {
             let newCoordinates = mapView.convert(touchPoint, toCoordinateFrom: mapView)
             
             addAnnotation(at: newCoordinates)
+            storePin(using: newCoordinates)
         }
     }
     
@@ -50,6 +52,16 @@ class VTLocationsMapViewController: UIViewController {
         }
     }
     
+    func fetchStoredPinsAndAddIntoMap() {
+        
+        let pinsArray = CoreDataManager.shard().getPins()
+        
+        for pin in pinsArray {
+            let coordinates = CLLocationCoordinate2D(latitude: pin.latitude, longitude: pin.longitude)
+            addAnnotation(at: coordinates)
+        }
+    }
+    
     func addAnnotation(at coordinates:CLLocationCoordinate2D) {
         
         let annotation = MKPointAnnotation()
@@ -57,6 +69,11 @@ class VTLocationsMapViewController: UIViewController {
         mapView.addAnnotation(annotation)
     }
 
+    func storePin(using coordinates:CLLocationCoordinate2D) {
+        
+        CoreDataManager.shard().storePin(latitude: coordinates.latitude, longitude: coordinates.longitude)
+    }
+    
 }
 
 extension VTLocationsMapViewController: MKMapViewDelegate {
