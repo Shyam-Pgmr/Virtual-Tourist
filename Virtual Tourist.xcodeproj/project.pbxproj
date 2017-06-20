@@ -19,6 +19,7 @@
 		522C8A0A1EF8F673008F3F3C /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522C8A091EF8F673008F3F3C /* CoreDataStack.swift */; };
 		522C8A0C1EF8F6D2008F3F3C /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 522C8A0B1EF8F6D2008F3F3C /* CoreData.framework */; };
 		522C8A0F1EF8F710008F3F3C /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 522C8A0D1EF8F710008F3F3C /* Model.xcdatamodeld */; };
+		522C8A131EF8FBE2008F3F3C /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522C8A121EF8FBE2008F3F3C /* UserDefault.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		522C8A091EF8F673008F3F3C /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		522C8A0B1EF8F6D2008F3F3C /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		522C8A0E1EF8F710008F3F3C /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		522C8A121EF8FBE2008F3F3C /* UserDefault.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefault.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,8 +111,8 @@
 		522C89FB1EF7F790008F3F3C /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				522C8A051EF804DA008F3F3C /* Client */,
-				522C8A061EF807B2008F3F3C /* VTAPIManager.swift */,
+				522C8A111EF8FB7B008F3F3C /* User Defaults */,
+				522C8A101EF8FB69008F3F3C /* Http */,
 				522C8A081EF8F628008F3F3C /* Core Data */,
 			);
 			name = Model;
@@ -128,8 +130,6 @@
 		522C8A051EF804DA008F3F3C /* Client */ = {
 			isa = PBXGroup;
 			children = (
-				522C8A011EF80413008F3F3C /* FlickrClient.swift */,
-				522C8A031EF804D4008F3F3C /* FlickrConstants.swift */,
 			);
 			name = Client;
 			sourceTree = "<group>";
@@ -141,6 +141,25 @@
 				522C8A0D1EF8F710008F3F3C /* Model.xcdatamodeld */,
 			);
 			name = "Core Data";
+			sourceTree = "<group>";
+		};
+		522C8A101EF8FB69008F3F3C /* Http */ = {
+			isa = PBXGroup;
+			children = (
+				522C8A051EF804DA008F3F3C /* Client */,
+				522C8A011EF80413008F3F3C /* FlickrClient.swift */,
+				522C8A031EF804D4008F3F3C /* FlickrConstants.swift */,
+				522C8A061EF807B2008F3F3C /* VTAPIManager.swift */,
+			);
+			name = Http;
+			sourceTree = "<group>";
+		};
+		522C8A111EF8FB7B008F3F3C /* User Defaults */ = {
+			isa = PBXGroup;
+			children = (
+				522C8A121EF8FBE2008F3F3C /* UserDefault.swift */,
+			);
+			name = "User Defaults";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -217,6 +236,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				522C8A131EF8FBE2008F3F3C /* UserDefault.swift in Sources */,
 				522C8A041EF804D4008F3F3C /* FlickrConstants.swift in Sources */,
 				522C8A071EF807B2008F3F3C /* VTAPIManager.swift in Sources */,
 				522C89FD1EF7FDF9008F3F3C /* VTLocationsMapViewController.swift in Sources */,

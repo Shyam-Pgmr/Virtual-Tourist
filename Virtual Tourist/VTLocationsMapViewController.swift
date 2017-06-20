@@ -20,6 +20,11 @@ class VTLocationsMapViewController: UIViewController {
         super.viewDidLoad()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        showMapViewLastRegion()
+    }
+    
     // MARK: Action
     
     @IBAction func longPressGestureOnMapView(_ sender: UILongPressGestureRecognizer) {
@@ -35,6 +40,16 @@ class VTLocationsMapViewController: UIViewController {
     
     // MARK: Helpers
     
+    func showMapViewLastRegion() {
+        
+        let lastRegion = UserDefaults.getMapViewLastRegion()
+        
+        if lastRegion.center.latitude != 0 && lastRegion.center.longitude != 0 {
+            
+            mapView.setRegion(lastRegion, animated: true)
+        }
+    }
+    
     func addAnnotation(at coordinates:CLLocationCoordinate2D) {
         
         let annotation = MKPointAnnotation()
@@ -45,6 +60,12 @@ class VTLocationsMapViewController: UIViewController {
 }
 
 extension VTLocationsMapViewController: MKMapViewDelegate {
+    
+    func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+        
+        // Presist MapView's region
+        UserDefaults.setMapView(last: mapView.region)
+    }
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         print("tapped")
