@@ -50,9 +50,8 @@ class VTPhotoAlbumViewController: UIViewController {
     @IBAction func newCollectionButtonTapAction(_ sender:UIButton) {
         
         hideNoImageView()
-        Utility.runOnBackground {
-            self.clearCachedPhotoAndfetchNew()
-        }
+        self.clearCachedPhotoAndfetchNew()
+        
     }
     
     // MARK: Helpers
@@ -134,17 +133,13 @@ class VTPhotoAlbumViewController: UIViewController {
     func clearCachedPhotoAndfetchNew() {
         
         // Clear Cached Photos
-        
-        CoreDataManager.shard().stack.performBackgroundBatchOperation { (context) in
-            
-            if let fetchedResultsController = self.fetchedResultsController, let fetchedObjects = fetchedResultsController.fetchedObjects {
-                for object in fetchedObjects {
-                    self.delete(photo: object as! Photo)
-                }
+        if let fetchedResultsController = self.fetchedResultsController, let fetchedObjects = fetchedResultsController.fetchedObjects {
+            for object in fetchedObjects {
+                self.delete(photo: object as! Photo)
             }
-
-            self.fetchPhotosFromFlickrIfRequired()
         }
+        
+        self.fetchPhotosFromFlickrIfRequired()
     }
     
     func delete(photo:Photo) {
@@ -229,8 +224,10 @@ class VTPhotoAlbumViewController: UIViewController {
                 return
             }
             else {
-                cachePhotos(photosArray: photosArray)
-                self.hideLoader()
+                Utility.runOnMain {
+                    cachePhotos(photosArray: photosArray)
+                    self.hideLoader()
+                }
             }
         }
     }
