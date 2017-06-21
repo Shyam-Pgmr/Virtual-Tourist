@@ -166,7 +166,8 @@ class VTPhotoAlbumViewController: UIViewController {
     
     func fetchPhotoFromFlickr() {
         showLoader()
-        let _ = VTAPIManager.shared().getImages(forLatitude: pin.latitude, longitude: pin.longitude) { (result, errorMessage) in
+        let nextPage = Int(pin.currentPage) + 1
+        let _ = VTAPIManager.shared().getImages(forLatitude: pin.latitude, longitude: pin.longitude, page:nextPage) { (result, errorMessage) in
             
             func displayError(_ message:String) {
                 Utility.Alert.show(title: Constant.Alert.Title.Oops, message: message, viewController: self, handler: { (action) in
@@ -189,7 +190,7 @@ class VTPhotoAlbumViewController: UIViewController {
                             photo.createdAt = NSDate()
                         }
                     }
-                    
+                    self.pin.currentPage = Int16(nextPage)
                     CoreDataManager.shard().stack.save()
                 }
             }
@@ -218,6 +219,11 @@ class VTPhotoAlbumViewController: UIViewController {
             }
             
             if photosArray.count == 0 {
+                
+                // Reset CurrentPage since all Photo in Flickr would have been finish for particular Pin
+                self.pin.currentPage = 0
+                CoreDataManager.shard().stack.save()
+                
                 self.hideLoader()
                 self.showNoImageView()
                 return

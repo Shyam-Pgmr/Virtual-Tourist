@@ -13,7 +13,7 @@ class VTAPIManager: NSObject {
     
     // MARK: Flickr APIs
     
-    func getImages(forLatitude latitude:Double, longitude:Double, completionHandler:@escaping (_ response:AnyObject?,_ error:String?)->Void) -> URLSessionDataTask {
+    func getImages(forLatitude latitude:Double, longitude:Double, page:Int, completionHandler:@escaping (_ response:AnyObject?,_ error:String?)->Void) -> URLSessionDataTask {
         
         let methodParameters = [
             FlickrClient.ParameterKeys.Method: FlickrClient.ParameterValues.SearchMethod,
@@ -23,7 +23,9 @@ class VTAPIManager: NSObject {
             FlickrClient.ParameterKeys.SafeSearch: FlickrClient.ParameterValues.UseSafeSearch,
             FlickrClient.ParameterKeys.Extras: FlickrClient.ParameterValues.MediumURL,
             FlickrClient.ParameterKeys.Format: FlickrClient.ParameterValues.ResponseFormat,
-            FlickrClient.ParameterKeys.NoJSONCallback: FlickrClient.ParameterValues.DisableJSONCallback
+            FlickrClient.ParameterKeys.NoJSONCallback: FlickrClient.ParameterValues.DisableJSONCallback,
+            FlickrClient.ParameterKeys.PerPage:FlickrClient.ParameterValues.PerPage,
+            FlickrClient.ParameterKeys.Page:page
         ] as [String : Any]
         
         let task = FlickrClient.shared().taskForGETMethod(FlickrClient.UrlComponents.Host, path: FlickrClient.UrlComponents.Path, parameters: methodParameters) { (result, error) in
