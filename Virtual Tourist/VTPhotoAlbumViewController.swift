@@ -149,13 +149,8 @@ class VTPhotoAlbumViewController: UIViewController {
     
     func delete(photo:Photo) {
         if let fetchedResultsController = fetchedResultsController {
-            do {
-                fetchedResultsController.managedObjectContext.delete(photo)
-                try fetchedResultsController.managedObjectContext.save()
-            }
-            catch {
-                print("Error occured while deleting Photo")
-            }
+            fetchedResultsController.managedObjectContext.delete(photo)
+            CoreDataManager.shard().stack.save()
         }
     }
     
@@ -176,6 +171,10 @@ class VTPhotoAlbumViewController: UIViewController {
             func displayError(_ message:String) {
                 Utility.Alert.show(title: Constant.Alert.Title.Oops, message: message, viewController: self, handler: { (action) in
                 })
+                self.hideLoader()
+                if self.fetchedResultsController?.fetchedObjects?.count == 0 {
+                    self.showNoImageView()
+                }
             }
             
             func cachePhotos(photosArray:[[String:AnyObject]]) {
@@ -191,12 +190,7 @@ class VTPhotoAlbumViewController: UIViewController {
                         }
                     }
                     
-                    do {
-                        try context.save()
-                    }
-                    catch {
-                        print("Error occured while saving Photos")
-                    }
+                    CoreDataManager.shard().stack.save()
                 }
             }
             
@@ -229,7 +223,6 @@ class VTPhotoAlbumViewController: UIViewController {
                 return
             }
             else {
-                
                 cachePhotos(photosArray: photosArray)
                 self.hideLoader()
             }
@@ -269,6 +262,10 @@ extension VTPhotoAlbumViewController:UICollectionViewDataSource, UICollectionVie
         // Delete Photo
         let photo = fetchedResultsController?.object(at: indexPath) as! Photo
         self.delete(photo:photo)
+
+        if fetchedResultsController?.fetchedObjects?.count == 0 {
+            self.showNoImageView()
+        }
     }
 }
 
